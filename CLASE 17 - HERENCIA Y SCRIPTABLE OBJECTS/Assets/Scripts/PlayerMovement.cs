@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     private InventoryManager mgInventory;
 
     [SerializeField] private Text playerNameLabel;
+    [SerializeField] private float rotateSensitivity  = 0.4f;
+    private SavepointsManager svManager;
+
 
     void Start()
     {
@@ -42,13 +45,23 @@ public class PlayerMovement : MonoBehaviour
         audioPlayer = GetComponent<AudioSource>();
         rbPlayer = GetComponent<Rigidbody>();
         mgInventory = GetComponent<InventoryManager>();
-        transform.position = FindObjectOfType<SavepointsManager>().GetSavePoint(GameManager.instance.lastSP).position;
-
-        playerNameLabel.text = ProfileManager.instance.GetPlayerName();
-        playerNameLabel.enabled = ProfileManager.instance.GetVisibleName();
-
-
+        svManager = FindObjectOfType<SavepointsManager>();
+        if(svManager != null){
+            transform.position = svManager.GetSavePoint(GameManager.instance.lastSP).position;
+        }
+        LoadProfile();
     }
+
+    public void LoadProfile(){
+        if(ProfileManager.instance != null){
+            playerNameLabel.text = ProfileManager.instance.GetPlayerName();
+            playerNameLabel.enabled = ProfileManager.instance.GetVisibleName();
+            rotateSensitivity = ProfileManager.instance.GetMouseSensitivity();
+        }else{
+             playerNameLabel.enabled = false;
+        }
+    }
+
     void Update()
     {
         MovePlayer();
@@ -207,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         //1 UN VALOR PARA ROTAR EN Y
         cameraAxisX += Input.GetAxis("Horizontal");
         //2 UN ANGULO A CALCULAR EN FUNCION DEL VALOR DEL PRIMER PASO
-        Quaternion angulo = Quaternion.Euler(0f, cameraAxisX * ProfileManager.instance.GetMouseSensitivity(), 0f);
+        Quaternion angulo = Quaternion.Euler(0f, cameraAxisX * rotateSensitivity, 0f);
         //3 ROTAR
         transform.localRotation = angulo;
     }

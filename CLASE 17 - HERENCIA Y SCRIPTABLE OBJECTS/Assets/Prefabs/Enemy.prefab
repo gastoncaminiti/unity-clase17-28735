@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4197040893597745598}
   - component: {fileID: 191595937896414064}
-  - component: {fileID: 175936208366638383}
+  - component: {fileID: 1855222138326195029}
   - component: {fileID: 1162865293208260806}
   - component: {fileID: 6639908287841950474}
   m_Layer: 30
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964996e715e3f5d4fa3a825e02e41174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &175936208366638383
+--- !u!114 &1855222138326195029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,10 +56,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4197040893597745594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5002e0973fc53a54196043fb2bf6afc9, type: 3}
+  m_Script: {fileID: 11500000, guid: f9faacfc522fa564fb9c922acc5dece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  enemyStats: {fileID: 11400000, guid: 6319cc3a899db04418d50cf713ff9027, type: 2}
 --- !u!54 &1162865293208260806
 Rigidbody:
   m_ObjectHideFlags: 0
